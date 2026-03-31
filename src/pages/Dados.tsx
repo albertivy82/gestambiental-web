@@ -1,30 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { toPng } from "html-to-image";
+import { useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import logo from "../assets/images/logo_2.png";
+import GraficoBarra from "../shared/components/graphics/GraficoBarra";
+import GraficoPizza from "../shared/components/graphics/GraficoPizza";
+import TabelaDados from "../shared/components/graphics/TabelaDados";
 import Text from "../shared/components/text/Text";
 import { textTypes } from "../shared/components/text/textTypes";
-import logo from "../assets/images/logo_2.png";
 import { theme } from "../shared/themes/theme";
-import { useParams } from "react-router-dom";
-import { useLocalidade } from "./hooks/useLocalidade";
 import { useDados } from "./hooks/useDados";
-import { Bar, BarChart, CartesianGrid, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import GraficoPizza from "../shared/components/graphics/GraficoPizza";
-import { useRef } from "react";
-import { toPng } from "html-to-image";
-import { Icon } from "../shared/icon/Icon";
-import GraficoBarra from "../shared/components/graphics/GraficoBarra";
+import { useLocalidade } from "./hooks/useLocalidade";
 
 
 export default function Dados() {
   const navigate = useNavigate();
   const { id } = useParams();
   const {localidade, loading: loadingLocalidade, error: errorLocalidade} = useLocalidade(Number(id));
-  const {sexoMoradores, escolaridadeMoradores, loading: loadingSexo, error: errorSexo} = useDados(Number(id));
+  const {dadosMorador, loading: loadingDados, 
+        } = useDados(Number(id));
   const ref = useRef<HTMLDivElement>(null);
   
   
-  if (loadingLocalidade || loadingSexo) return <div>Carregando dados...</div>;
+  if (loadingLocalidade || loadingDados) return <div>Carregando dados...</div>;
   if (errorLocalidade) return <div>Erro da localidade: {errorLocalidade}</div>;
-  if (errorSexo) return <div>Erro do gráfico: {errorSexo}</div>;
+ 
 
   const exportarImagem = async () => {
     if (!ref.current) return;
@@ -58,14 +57,60 @@ export default function Dados() {
     
         <GraficoPizza
            title="Moradores - Sexo"
-          data={sexoMoradores}
+          data={dadosMorador?.sexo}
           onDownload={exportarImagem}
         />
 
-        <GraficoBarra
+        <GraficoPizza
            title="Moradores - Escolaridade"
-          data={escolaridadeMoradores}
+          data={dadosMorador?.escolaridade}
           onDownload={exportarImagem}
+        />
+
+        <GraficoPizza
+           title="Moradores - Religião"
+          data={dadosMorador?.religiao}
+          onDownload={exportarImagem}
+        />
+
+         <GraficoBarra
+           title="Moradores - Estado Civil"
+          data={dadosMorador?.estadoCivil}
+          onDownload={exportarImagem}
+        />
+
+         <GraficoBarra
+           title="Moradores - Faixa Etária"
+          data={dadosMorador?.faixaEtaria}
+          onDownload={exportarImagem}
+        />
+         
+         <GraficoBarra
+           title="Moradores - Casos de Doenças Relatados"
+          data={dadosMorador?.doencas}
+          onDownload={exportarImagem}
+        />
+
+         <GraficoPizza
+           title="Moradores - Estudantes"
+          data={dadosMorador?.estudo}
+          onDownload={exportarImagem}
+        />
+
+       <TabelaDados
+           title="Moradores - Onde Estudam"
+          data={dadosMorador?.detalheEstudo}
+        />
+
+       <GraficoPizza
+           title="Moradores - Trabalho"
+          data={dadosMorador?.trabalho}
+          onDownload={exportarImagem}
+        />
+
+       <TabelaDados
+           title="Moradores - Onde trabalha"
+          data={dadosMorador?.detalheTrabalho}
         />
 
      
