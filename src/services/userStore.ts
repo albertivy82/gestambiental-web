@@ -16,7 +16,7 @@ export const userData = async () => {
     const matricula = decodedToken["matricula"];
 
     const usuarioAtual = await connectionAPIGet<UserBody>(
-      `http://192.168.100.21:8080/usuario/buscapormatricula/${matricula}`
+      `http://192.168.100.15:8080/usuario/buscapormatricula/${matricula}`
     );
 
     storeUser(usuarioAtual);

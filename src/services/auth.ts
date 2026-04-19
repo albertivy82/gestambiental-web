@@ -5,7 +5,7 @@ import { CLIENT_ID, REDIRECT_URI } from "./config";
 import { storeAuthData } from "./authStore";
 
 const authServer = axios.create({
-  baseURL: 'http://192.168.100.21:8080'
+  baseURL: 'http://192.168.100.15:8080'
 });
 
 export interface OAuthAuthorizationTokenResponse {

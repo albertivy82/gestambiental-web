@@ -8,20 +8,25 @@ import TabelaDados from "../shared/components/graphics/TabelaDados";
 import Text from "../shared/components/text/Text";
 import { textTypes } from "../shared/components/text/textTypes";
 import { theme } from "../shared/themes/theme";
-import { useDados } from "./hooks/useDados";
 import { useLocalidade } from "./hooks/useLocalidade";
+import { useMorador } from "./hooks/useMorador";
+import { useParticipacao } from "./hooks/useParticipacao";
+import { useAtividadeProdutiva } from "./hooks/useAtividadeProdutiva";
+import { useServicosComunicacao } from "./hooks/useServicosComunicacao";
 
 
 export default function Dados() {
   const navigate = useNavigate();
   const { id } = useParams();
   const {localidade, loading: loadingLocalidade, error: errorLocalidade} = useLocalidade(Number(id));
-  const {dadosMorador, loading: loadingDados, 
-        } = useDados(Number(id));
+  const {dadosMorador} = useMorador(Number(id));
+  const {participacao} = useParticipacao(Number(id));
+  const {atividadeProdutiva} = useAtividadeProdutiva(Number(id));
+  const {servicosComunicacao} = useServicosComunicacao(Number(id));
   const ref = useRef<HTMLDivElement>(null);
   
   
-  if (loadingLocalidade || loadingDados) return <div>Carregando dados...</div>;
+  if (loadingLocalidade ) return <div>Carregando dados...</div>;
   if (errorLocalidade) return <div>Erro da localidade: {errorLocalidade}</div>;
  
 
@@ -112,6 +117,39 @@ export default function Dados() {
            title="Moradores - Onde trabalha"
           data={dadosMorador?.detalheTrabalho}
         />
+
+        
+        <GraficoBarra
+           title="Participacao Institucional de Moradores"
+          data={participacao}
+          onDownload={exportarImagem}
+        />
+
+        <GraficoBarra
+           title="Atividades Produtivas dos Moradores"
+          data={atividadeProdutiva?.atividades}
+          onDownload={exportarImagem}
+        />
+
+        <GraficoBarra
+           title="Atividade Produtiva - Faturamento Mensal (Em R$)"
+          data={atividadeProdutiva?.faturamento}
+          onDownload={exportarImagem}
+        />
+
+        <GraficoPizza
+           title="Pessoas Envolvidas por Atividade Produtiva"
+          data={atividadeProdutiva?.pessoasEnvolvidas}
+          onDownload={exportarImagem}
+        />
+
+       
+       <GraficoPizza
+           title="Serviços de Comunicação Utilizados"
+          data={servicosComunicacao}
+          onDownload={exportarImagem}
+        />
+
 
      
     </div>
