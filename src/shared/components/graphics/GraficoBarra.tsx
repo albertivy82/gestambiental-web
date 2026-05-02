@@ -18,7 +18,20 @@ import {
   };
   
   export default function GraficoBarra({ title, data, onDownload }: Props) {
+   
     const ref = useRef<HTMLDivElement>(null);
+
+    const totalItens = data?.length ?? 0;
+
+    const nomeMuitoLongo = data?.some(item => item.nome.length > 12) ?? false;
+
+    // heurística simples e eficiente
+    const precisaRotacionar = totalItens > 6 || nomeMuitoLongo;
+
+    // tamanho dinâmico da fonte
+    let fontSize = 12;
+    if (totalItens > 10) fontSize = 10;
+    if (totalItens > 15) fontSize = 9;
   
     const temDados =
       data && data.length > 0 && data.some((item) => item.total > 0);
@@ -50,7 +63,14 @@ import {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="nome" />
+                <XAxis
+                    dataKey="nome"
+                    interval={0}
+                    angle={precisaRotacionar ? -30 : 0}
+                    textAnchor={precisaRotacionar ? "end" : "middle"}
+                    height={precisaRotacionar ? 80 : 30}
+                    tick={{ fontSize }}
+                  />
                 <YAxis />
                 <Tooltip
                   formatter={(value) => [`${value} pessoas`, "Quantidade"]}
