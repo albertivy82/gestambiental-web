@@ -2,7 +2,7 @@ import { DadosType } from "./DadosType";
 
 export interface EscolaConsultaType {
 
-  totalEscolas: DadosType[];
+     totalEscolas: DadosType[];
 	 relacaoDeEscolas: DadosType[];
 	 escolasPorIniciativa: DadosType[];
 	 merendaEcolar: DadosType[];

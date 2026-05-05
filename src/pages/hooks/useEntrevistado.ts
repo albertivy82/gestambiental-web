@@ -11,7 +11,7 @@ export const useEntrevistado = (id: number) => {
         const carregar = async () => {
           try {
             const dataEntrevistado = await connectionAPIGet<EntrevistadoConsultaType>(
-              `http://192.168.100.15:8080/entrevistado/consulta-entrevistado/${id}`
+              `/api/entrevistado/consulta-entrevistado/${id}`
             );
 
               setDadosEntrevistado(dataEntrevistado);

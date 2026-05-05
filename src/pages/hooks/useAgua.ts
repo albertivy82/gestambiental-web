@@ -11,7 +11,7 @@ export const useAgua = (id: number) => {
         const carregar = async () => {
           try {
             const dataMorador = await connectionAPIGet<AguaConsultaType>(
-              `http://192.168.100.15:8080/agua/consulta-agua/${id}`
+              `/api/agua/consulta-agua/${id}`
             );
 
           

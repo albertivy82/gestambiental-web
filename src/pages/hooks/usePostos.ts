@@ -11,7 +11,7 @@ export const usePosto = (id: number) => {
         const carregar = async () => {
           try {
             const dataPosto = await connectionAPIGet<PostosConsultaType>(
-              `http://192.168.100.15:8080/posto-de-saude/consulta-postos/${id}`
+              `/api/posto-de-saude/consulta-postos/${id}`
             );
 
               setDadosPosto(dataPosto);

@@ -7,7 +7,7 @@ export interface PostosConsultaType {
 	ambulatorial: DadosType[];
 	urgenciaEmergencia: DadosType[];
 	medicosPorTurno: DadosType[];
-	medicosPorTurnoTotal: DadosType[];
+	
 }
 
 

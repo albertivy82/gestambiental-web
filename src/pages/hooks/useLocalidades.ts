@@ -12,7 +12,7 @@ export const useLocalidades = () => {
   useEffect(() => {
     const carregar = async () => {
       try {
-        const data = await connectionAPIGet<LocalidadeType[]>('http://192.168.100.15:8080/localidade');
+        const data = await connectionAPIGet<LocalidadeType[]>('/api/localidade');
         console.log(data)
         setLocalidades(data);
       } catch (e: any) {

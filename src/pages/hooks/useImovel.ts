@@ -11,7 +11,7 @@ export const useImovel = (id: number) => {
         const carregar = async () => {
           try {
             const data = await connectionAPIGet<ImovelConsultaType>(
-              `http://192.168.100.15:8080/imovel/consulta-imovel/${id}`
+              `/api/imovel/consulta-imovel/${id}`
             );
 
             console.log("retorno data", data.linhasOnibus)

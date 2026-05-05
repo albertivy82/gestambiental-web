@@ -12,7 +12,7 @@ export const useServicosComunicacao = (id: number) => {
               
                 try {
                   const data = await connectionAPIGet<DadosType[]>(
-                    `http://192.168.100.15:8080/servico-de-comunicacao/consulta-servico-de-comunicacao/${id}`
+                    `/api/servico-de-comunicacao/consulta-servico-de-comunicacao/${id}`
                   );
                   setServicosComunicacao(data);
                   console.log("recebeu estes dados de participação?",data)

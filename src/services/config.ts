@@ -1,4 +1,4 @@
-export const AUTH_SERVER = "http://192.168.100.15:8080";
+export const AUTH_SERVER = "https://dadoseconomicos.ideflorbio.pa.gov.br";
 export const CLIENT_ID = "gestambiental-web";
-export const REDIRECT_URI = "http://127.0.0.1:3000/oauth/callback";
+export const REDIRECT_URI = "https://dadoseconomicos.ideflorbio.pa.gov.br/oauth/callback";
 export const SCOPE = "READ WRITE";

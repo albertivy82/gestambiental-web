@@ -11,7 +11,7 @@ export const useEscola = (id: number) => {
         const carregar = async () => {
           try {
             const dataEscola = await connectionAPIGet<EscolaConsultaType>(
-              `http://192.168.100.15:8080/escola/consulta-escolas/${id}`
+              `/api/escola/consulta-escolas/${id}`
             );
 
               setDadosEscola(dataEscola);

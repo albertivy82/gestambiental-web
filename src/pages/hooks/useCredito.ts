@@ -12,7 +12,7 @@ export const useCredito = (id: number) => {
               
                 try {
                   const data = await connectionAPIGet<DadosType[]>(
-                    `http://192.168.100.15:8080/credito/consulta-credito/${id}`
+                    `/api/credito/consulta-credito/${id}`
                   );
                   setCredito(data);
                   console.log("recebeu estes dados de participação?",data)

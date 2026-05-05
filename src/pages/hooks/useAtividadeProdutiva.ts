@@ -12,7 +12,7 @@ export const useAtividadeProdutiva = (id: number) => {
         const carregar = async () => {
           try {
             const data = await connectionAPIGet<AtividadeProdutivaConsultaType>(
-              `http://192.168.100.15:8080/atividade-produtiva/consulta-atividade-produtiva/${id}`
+              `/api/atividade-produtiva/consulta-atividade-produtiva/${id}`
             );
 
           

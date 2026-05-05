@@ -73,10 +73,10 @@ import {
                   />
                 <YAxis />
                 <Tooltip
-                  formatter={(value) => [`${value} pessoas`, "Quantidade"]}
+                  formatter={(value) => [`${value} unidades`, "Quantidade"]}
                 />
                 <Legend />
-                <Bar dataKey="total" fill="#1976d2" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="total"  name="Indicador" fill="#1976d2" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}

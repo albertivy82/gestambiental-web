@@ -11,7 +11,7 @@ export const useOutrasRendas = (id: number) => {
         const carregar = async () => {
           try {
             const data = await connectionAPIGet<OutrasRendasType>(
-              `http://192.168.100.15:8080/outras-fontes-de-renda/consulta-outras-fontes/${id}`
+              `/api/outras-fontes-de-renda/consulta-outras-fontes/${id}`
             );
 
           

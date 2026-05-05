@@ -18,8 +18,8 @@ export default function Login() {
     localStorage.removeItem("code_verifier");
     localStorage.setItem("code_verifier", codeVerifier);
 
-    console.log("code_verifier salvo:", codeVerifier);
-    console.log("preciso saber aqui", challenge, codeChallenge, codeVerifier);
+    //console.log("code_verifier salvo:", codeVerifier);
+    //console.log("preciso saber aqui", challenge, codeChallenge, codeVerifier);
 
     const config = qs.stringify({
       response_type: "code",

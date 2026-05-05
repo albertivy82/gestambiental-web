@@ -11,7 +11,7 @@ export const useMorador = (id: number) => {
         const carregar = async () => {
           try {
             const dataMorador = await connectionAPIGet<MoradorConsultaType>(
-              `http://192.168.100.15:8080/morador/consulta-morador/${id}`
+              `/api/morador/consulta-morador/${id}`
             );
 
           
