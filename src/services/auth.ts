@@ -43,6 +43,10 @@ export function useRequest() {
         }
       );
 
+      if (!response.data?.access_token) {
+          throw new Error("Resposta OAuth inválida.");
+        }
+
       await storeAuthData(response.data);
       navigate('/home');
     } catch (error) {
